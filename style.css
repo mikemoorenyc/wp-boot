@@ -1,0 +1,24 @@
+/*
+
+	Theme Name: REA WORDPRESS BLANK
+	Author: Mike Moore
+	Website: http://realestatearts.com
+	Twitter: @welcomebrand
+	Version: 1.0
+	Description: REA WORDPRESS BLANK TO DEVELOP FROM UTILIZING LESS & GULP to create a work flow that maximize your Google Page Speed Score
+
+	CONTENTS
+	-------------
+	- Global resets
+	- Global typography & layout rules
+	- Page styles
+	- Post styles
+	- General bits
+
+	- Media queries
+
+*/
+
+.sticky {}          /* DO NOT EDIT THIS */
+.gallery-caption {} /* THESE ARE USELESS */
+.bypostauthor {}    /* THEY ARE ONLY TO KEEP THEME CHECK HAPPY */

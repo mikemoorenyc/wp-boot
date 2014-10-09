@@ -1,0 +1,109 @@
+* {
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+*:before,
+*:after {
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+body {
+  font-family: @font-family;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  color: @main-color;
+  background-color: @body-bg;
+  font-weight: normal;
+}
+
+// Reset fonts for relevant elements
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+textarea {
+  resize: none;
+}
+// Links
+a {
+  color: @link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @link-color-hover;
+    text-decoration: underline;
+  }
+
+}
+a, a:hover, a:active, a:focus {
+  outline: 0;
+}
+
+// Figures
+//
+// We reset this here because previously Normalize had no `figure` margins. This
+// ensures we don't break anyone's use of the element.
+
+// IMGS
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+//TYPE
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+
+}
+
+//TYPE STUFF
+ul, p {
+  margin-bottom: 1.5em;
+}
+ul li {
+  margin: 0 0 0 15px;
+}
+ul.no-style {
+  margin: 0;
+  li {
+    margin: 0;
+  }
+}
+blockquote {
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  border: 0;
+  color: inherit;
+  font-style: italic;
+
+  p,
+  ul,
+  ol {
+    &:last-child {
+    //  margin-bottom: 0;
+    }
+  }
+
+  // Note: Deprecated small and .small as of v3.1.0
+  // Context: https://github.com/twbs/bootstrap/issues/11660
+  footer,
+  small,
+  .small {
+    display: block;
+    font-size: 80%; // back to default font-size
+    &:before {
+      content: '\2014 \00A0'; // em dash, nbsp
+    }
+  }
+}
