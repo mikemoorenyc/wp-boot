@@ -53,6 +53,12 @@ gulp.task('templatecrush', function() {
     .pipe(gulp.dest('build'));
 });
 
+gulp.task('lint', function() {
+  return gulp.src('js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
 
 
 
