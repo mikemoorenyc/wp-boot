@@ -16,7 +16,7 @@
     ExpiresByType image/svg+xml                         "access plus 1 month"
 
     # cache CSS files for 24 hours
-    ExpiresByType text/css "access plus 24 hours"
+    ExpiresByType text/css "access plus 7 days"
 
     # JavaScript
     ExpiresByType application/javascript                "access plus 7 days"
