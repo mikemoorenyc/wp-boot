@@ -1,0 +1,28 @@
+<IfModule mod_expires.c>
+    # Activate mod_expires for this directory
+    ExpiresActive on
+
+    # locally cache common image types for 7 days
+    ExpiresByType image/jpg "access plus 7 days"
+    ExpiresByType image/jpeg "access plus 7 days"
+    ExpiresByType image/gif "access plus 7 days"
+    ExpiresByType image/png "access plus 7 days"
+
+    ExpiresByType application/font-woff                 "access plus 1 month"
+    ExpiresByType application/font-woff2                "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+    ExpiresByType application/x-font-ttf                "access plus 1 month"
+    ExpiresByType font/opentype                         "access plus 1 month"
+    ExpiresByType image/svg+xml                         "access plus 1 month"
+
+    # cache CSS files for 24 hours
+    ExpiresByType text/css "access plus 7 days"
+
+    # JavaScript
+    ExpiresByType application/javascript                "access plus 7 days"
+</IfModule>
+
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE text/html
