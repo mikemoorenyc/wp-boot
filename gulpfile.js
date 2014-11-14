@@ -46,11 +46,6 @@ gulp.task('templatecrush', function() {
 
       }))
     .pipe(gulp.dest('build'));
-  gulp.src('/page-templates/*.php')
-    .pipe(htmlclean({
-
-      }))
-    .pipe(gulp.dest('build'));
 });
 
 gulp.task('lint', function() {
