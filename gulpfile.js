@@ -11,7 +11,7 @@ gulp.task('js', function () {
    gulp.src(['js/jquery.js', 'js/plugins.js', 'js/site.js'])
       .pipe(uglify())
       .pipe(concat('main.js'))
-      .pipe(gulp.dest('build/js'))
+      .pipe(gulp.dest('../islandia-build/js'))
 });
 
 gulp.task('less', function () {
@@ -22,7 +22,7 @@ gulp.task('less', function () {
   gulp.src('less/expanded.less')
     .pipe(less())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(gulp.dest('build/css'));
+    .pipe(gulp.dest('../islandia-build/css'));
 });
 gulp.task('imgmin', function () {
   gulp.src('assets/*')
@@ -31,21 +31,21 @@ gulp.task('imgmin', function () {
         svgoPlugins: [{removeViewBox: false}],
         use: [pngcrush()]
     }))
-    .pipe(gulp.dest('build/assets'));
+    .pipe(gulp.dest('../islandia-build/assets'));
   gulp.src('assets/icons/*')
     .pipe(imagemin({
         progressive: true,
         svgoPlugins: [{removeViewBox: false}],
         use: [pngcrush()]
     }))
-    .pipe(gulp.dest('build/assets/icons'));
+    .pipe(gulp.dest('../islandia-build/assets/icons'));
 });
 gulp.task('templatecrush', function() {
   gulp.src('*.php')
     .pipe(htmlclean({
 
       }))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('../islandia-build'));
 });
 
 gulp.task('lint', function() {
@@ -62,6 +62,5 @@ gulp.task('watch', function() {
     gulp.watch('less/*.less', ['less']);
     gulp.watch('assets/*', ['imgmin']);
     gulp.watch('*.php', ['templatecrush']);
-    gulp.watch('page-templates/*.php', ['templatecrush']);
 });
 gulp.task('build', ['less', 'js', 'imgmin', 'templatecrush']);
