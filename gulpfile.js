@@ -23,6 +23,10 @@ gulp.task('less', function () {
     .pipe(less())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../islandia-build/css'));
+  gulp.src('less/ie-fixes.css')
+    .pipe(less())
+    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
+    .pipe(gulp.dest('../islandia-build/css'));
 });
 gulp.task('imgmin', function () {
   gulp.src('assets/*')
@@ -60,6 +64,7 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
     gulp.watch('js/*.js', ['js']);
     gulp.watch('less/*.less', ['less']);
+    gulp.watch('less/*.css', ['less']);
     gulp.watch('assets/*', ['imgmin']);
     gulp.watch('*.php', ['templatecrush']);
 });

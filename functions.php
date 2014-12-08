@@ -1,5 +1,5 @@
 <?php
-
+/*
 add_theme_support( 'menus' );
 
 if ( function_exists('register_sidebar') )
@@ -9,7 +9,11 @@ if ( function_exists('register_sidebar') )
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 ));
-
+*/
+add_action( 'build_dir', 'echo_build' );
+function echo_build() {
+	echo '/wp-content/themes/w25th-build';
+}
 add_post_type_support('page', 'excerpt');
 
 function post_comments( $comment, $args, $depth ) {
@@ -24,11 +28,11 @@ function post_comments( $comment, $args, $depth ) {
 
 			<p class="comment-meta">
 				<?php printf( __( '%s' ), sprintf( '%s', get_comment_author_link() ) ); ?>
-    
+
                 <a class="comment-date" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
                     <?php printf( __( '%1$s' ), get_comment_date() ); ?>
-                </a> 
-                
+                </a>
+
                 <?php if ( $comment->comment_approved == '0' ) : ?>
                     <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></em>
                 <?php endif; ?>
@@ -56,10 +60,10 @@ function post_comments( $comment, $args, $depth ) {
 	endswitch;
 }
 
-// Custom functions 
+// Custom functions
 
 // Tidy up the <head> a little. Full reference of things you can show/remove is here: http://rjpargeter.com/2009/09/removing-wordpress-wp_head-elements/
-remove_action('wp_head', 'wp_generator');// Removes the WordPress version as a layer of simple security 
+remove_action('wp_head', 'wp_generator');// Removes the WordPress version as a layer of simple security
 
 add_theme_support('post-thumbnails');
 ?>
