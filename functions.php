@@ -14,6 +14,7 @@ add_action( 'build_dir', 'echo_build' );
 function echo_build() {
 	echo '/wp-content/themes/w25th-build';
 }
+$siteDir = '/wp-content/themes/w25th-build';
 add_post_type_support('page', 'excerpt');
 
 function post_comments( $comment, $args, $depth ) {
