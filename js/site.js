@@ -14,5 +14,16 @@ $(document).ready(function(){
 
   //LOAD IN EXPANDED CSS
   loadCSS(cssExpand);
+  var thechecker = setInterval(function(){
+    var ztest = $('#css-checker').css('height');
+
+    console.log(ztest);
+
+    if(ztest == '1px') {
+      clearInterval(thechecker);
+      console.log('css loaded');
+    }
+
+  }, 500);
   $('body').addClass('page-loaded');
 });
