@@ -18,7 +18,7 @@ gulp.task('less', function () {
   gulp.src('less/main.less')
     .pipe(less())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(gulp.dest('build/css'));
+    .pipe(gulp.dest('../islandia-build/css'));
   gulp.src('less/expanded.less')
     .pipe(less())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
