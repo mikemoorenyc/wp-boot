@@ -1,3 +1,5 @@
+var buildDir = 'islandia-build';
+
 var gulp = require('gulp'),
   htmlclean = require('gulp-htmlclean'),
    uglify = require('gulp-uglify'),
@@ -11,22 +13,22 @@ gulp.task('js', function () {
    gulp.src(['js/jquery.js', 'js/plugins.js', 'js/site.js'])
       .pipe(uglify())
       .pipe(concat('main.js'))
-      .pipe(gulp.dest('../islandia-build/js'))
+      .pipe(gulp.dest('../'+buildDir+'/js'))
 });
 
 gulp.task('less', function () {
   gulp.src('less/main.less')
     .pipe(less())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(gulp.dest('../islandia-build/css'));
+    .pipe(gulp.dest('../'+buildDir+'/css'));
   gulp.src('less/expanded.less')
     .pipe(less())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(gulp.dest('../islandia-build/css'));
+    .pipe(gulp.dest('../'+buildDir+'/css'));
   gulp.src('less/ie-fixes.css')
     .pipe(less())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(gulp.dest('../islandia-build/css'));
+    .pipe(gulp.dest('../'+buildDir+'/css'));
 });
 gulp.task('imgmin', function () {
   gulp.src('assets/*')
@@ -35,21 +37,21 @@ gulp.task('imgmin', function () {
         svgoPlugins: [{removeViewBox: false}],
         use: [pngcrush()]
     }))
-    .pipe(gulp.dest('../islandia-build/assets'));
+    .pipe(gulp.dest('../'+buildDir+'/assets'));
   gulp.src('assets/icons/*')
     .pipe(imagemin({
         progressive: true,
         svgoPlugins: [{removeViewBox: false}],
         use: [pngcrush()]
     }))
-    .pipe(gulp.dest('../islandia-build/assets/icons'));
+    .pipe(gulp.dest('../'+buildDir+'/assets/icons'));
 });
 gulp.task('templatecrush', function() {
   gulp.src('*.php')
     .pipe(htmlclean({
 
       }))
-    .pipe(gulp.dest('../islandia-build'));
+    .pipe(gulp.dest('../'+buildDir));
 });
 
 gulp.task('lint', function() {
