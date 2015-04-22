@@ -5,7 +5,7 @@ $slug = $post->post_name;
 global $siteDir;
 $parentID = $post->post_parent;
 $parentslug = get_post($post->post_parent)->post_name;
-
+$siteDir = get_bloginfo('template_url');
 ?>
 <!DOCTYPE html>
 <html lang="en" data-parent-slug="<?php echo $parentslug;?>" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">

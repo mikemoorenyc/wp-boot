@@ -8,7 +8,7 @@
  */
 
  global $siteDir;
-
+ $siteDir = get_bloginfo('template_url');
 ?>
 
 

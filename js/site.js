@@ -1,6 +1,5 @@
 $(document).ready(function(){
   //GLOBALS
-  siteDir = '/wp-content/themes/w25th-build',
   ts = 250,
   tab = 401,
   dt = 801;

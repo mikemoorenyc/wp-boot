@@ -1,7 +1,7 @@
 <?php
 add_theme_support( 'menus' );
 
-$siteDir = '/wp-content/themes/w25th-build';
+//$siteDir = '/wp-content/themes/w25th-build';
 add_post_type_support('page', 'excerpt');
 
 
