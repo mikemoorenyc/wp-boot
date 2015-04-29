@@ -13,6 +13,7 @@ Steps to set up wordpress site
 3. In `header.php`, change the `<title>` copy to the name of the site you are building.
 4. Set up your variables for width breaks in `less/variables.less` & `js/site.js`.
 5. Create your favicons.
+6. Run `gulp build` once to create the new build directory / theme. 
 
 Generator I use for favicons
 ----------------------------
