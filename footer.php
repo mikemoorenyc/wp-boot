@@ -1,4 +1,4 @@
-
+<?php global $siteDir;?>
 
 <script>siteDir = '<?php echo $siteDir;?>';</script>
 <script type="text/javascript">

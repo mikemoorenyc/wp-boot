@@ -52,8 +52,6 @@ gulp.task('templatecrush', function() {
 
       }))
     .pipe(gulp.dest('../'+buildDir));
-  gulp.src(['*.css','*.png', '.htaccess'])
-    .pipe(gulp.dest('../'+buildDir));
 });
 
 gulp.task('lint', function() {

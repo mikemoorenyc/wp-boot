@@ -7,7 +7,7 @@
  * @since Twenty Twelve 1.0
  */
 ?>
-
+<?php global $siteDir;?>
 
 <?php get_header(); ?>
   <?php get_template_part( 'loop', 'index' ); ?>
