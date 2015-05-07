@@ -1,7 +1,4 @@
-<?php
-global $siteDir;
-$siteDir = get_bloginfo('template_url');
-?>
+
 
 <script>siteDir = '<?php echo $siteDir;?>';</script>
 <script type="text/javascript">

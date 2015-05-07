@@ -2,9 +2,9 @@
 
 global $post;
 $slug = $post->post_name;
-global $siteDir;
 $parentID = $post->post_parent;
 $parentslug = get_post($post->post_parent)->post_name;
+global $siteDir;
 $siteDir = get_bloginfo('template_url');
 ?>
 <!DOCTYPE html>

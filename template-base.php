@@ -6,9 +6,6 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
-
- global $siteDir;
- $siteDir = get_bloginfo('template_url');
 ?>
 
 
