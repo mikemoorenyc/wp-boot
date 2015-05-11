@@ -19,6 +19,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.transition (@transition) {
+  -webkit-transition: @transition; /* For Safari 3.1 to 6.0 */
+  transition: @transition;
+}
 
 
 .cover() {
