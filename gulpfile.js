@@ -7,6 +7,7 @@ var gulp = require('gulp'),
    less = require('gulp-less'),
    minifyCSS = require('gulp-minify-css'),
    imagemin = require('gulp-imagemin'),
+   jshint = require('gulp-jshint'),
    pngcrush = require('imagemin-pngcrush');
 
 gulp.task('js', function () {
