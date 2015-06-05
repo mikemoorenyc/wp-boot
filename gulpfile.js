@@ -6,6 +6,7 @@ var gulp = require('gulp'),
    concat = require('gulp-concat'),
    less = require('gulp-less'),
    minifyCSS = require('gulp-minify-css'),
+   autoprefixer = require('gulp-autoprefixer'),
    imagemin = require('gulp-imagemin'),
    jshint = require('gulp-jshint'),
    pngcrush = require('imagemin-pngcrush');
@@ -20,14 +21,17 @@ gulp.task('js', function () {
 gulp.task('less', function () {
   gulp.src('less/main.less')
     .pipe(less())
+    .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
   gulp.src('less/expanded.less')
     .pipe(less())
+    .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
   gulp.src('less/ie-fixes.css')
     .pipe(less())
+    .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
 });
