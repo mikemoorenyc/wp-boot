@@ -5,9 +5,11 @@ $(document).ready(function(){
   dt = 801;
   windoww = $(window).width();
   windowh = $(window).height();
+  orientationClass();
   $(window).resize(function(){
     windoww = $(window).width();
     windowh = $(window).height();
+    orientationClass();
   });
 
 
@@ -26,3 +28,12 @@ $(document).ready(function(){
   }, 500);
   $('body').addClass('page-loaded');
 });
+
+
+function orientationClass() {
+  if (windoww >= windowh) {
+    $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');
+  } else {
+    $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
+  }
+}
