@@ -11,7 +11,7 @@ var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
    cache = require('gulp-cache'),
    pngcrush = require('imagemin-pngcrush');
-   sass = require('gulp-ruby-sass');
+   sass = require('gulp-sass');
 
 
 
@@ -26,6 +26,25 @@ gulp.task('js', function () {
     .on('error', console.error.bind(console))
     .pipe(gulp.dest('../'+buildDir+'/js'));
 });
+
+gulp.task('sass', function () {
+  gulp.src('sass/main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
+    .pipe(gulp.dest('../'+buildDir+'/css'));
+  gulp.src('sass/expanded.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
+    .pipe(gulp.dest('../'+buildDir+'/css'));
+  gulp.src('sass/ie-fixes.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
+    .pipe(gulp.dest('../'+buildDir+'/css'));
+})
+
 /*
 gulp.task('less', function () {
   gulp.src('less/main.less')
@@ -47,43 +66,41 @@ gulp.task('less', function () {
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
 });
-*/
+
 
 gulp.task('sassmain', function () {
 
-  return sass('sass/main.scss')
+  return sass('sass/main.scss', { sourcemap: false })
     .on('error', function (err) {
       console.error('Error!', err.message);
     })
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
-  });
 });
 
 gulp.task('sassexpand', function () {
 
-  return sass('sass/expanded.scss')
+  return sass('sass/expanded.scss', { sourcemap: false })
     .on('error', function (err) {
       console.error('Error!', err.message);
     })
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
-  });
 });
 
 gulp.task('sassie', function () {
 
-  return sass('sass/ie-fixes.scss')
+  return sass('sass/ie-fixes.scss', { sourcemap: false })
     .on('error', function (err) {
       console.error('Error!', err.message);
     })
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
-  });
 });
+*/
 
 gulp.task('imgmin', function () {
   gulp.src('assets/imgs/**/*')
@@ -121,10 +138,10 @@ gulp.task('watch', function() {
     gulp.watch('js/*.js', ['js']);
   //  gulp.watch('less/*.less', ['less']);
   //  gulp.watch('less/*.css', ['less']);
-    gulp.watch('sass/**/*', ['sassmain', 'sassexpand', 'sassie']);
+    gulp.watch('sass/**/*', ['sass']);
     gulp.watch('assets/imgs/**/*', ['imgmin']);
     gulp.watch('assets/fonts/**/*', ['fontdump']);
     gulp.watch('*.php', ['templatecrush']);
     gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
 });
-gulp.task('build', ['less', 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sassmain', 'sassexpand', 'sassie']);
+gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass']);

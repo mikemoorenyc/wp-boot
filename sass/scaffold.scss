@@ -35,13 +35,13 @@ textarea {
 }
 // Links
 a {
-  color: @link-color;
+  color: $link-color;
   text-decoration: none;
 
   &:hover,
   &:focus,
   &:active {
-    color: @link-color-hover;
+    color: $link-color-hover;
     text-decoration: underline;
   }
 
