@@ -4,6 +4,9 @@ put in the themes folder and push into a directory and push into a seperate dire
 
 name all templates 'template-whateverthetemplateisfor.php'
 
+RUN NPM INSTALL FIRST
+=====================
+
 
 Steps to set up wordpress site
 ==============================
@@ -15,7 +18,7 @@ Steps to set up wordpress site
 5. Create your favicons.
 6. In `style.css`, change the content up at the top so it relates to the site you're building.
 7. Run `gulp build` once to create the new build directory / theme.
-8. Manually copy & paste `style.css` & `screenshot.png` into the new created build directory. 
+8. Manually copy & paste `style.css` & `screenshot.png` into the new created build directory.
 
 Generator I use for favicons
 ----------------------------
