@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('js', function () {
-  gulp.src(['js/jquery.js', 'js/plugins/*.js', 'js/site.js'])
+  gulp.src([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'])
     .pipe(uglify())
     .on('error', console.error.bind(console))
     .pipe(concat('main.js'))

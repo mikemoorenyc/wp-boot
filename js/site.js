@@ -21,6 +21,7 @@ $(document).ready(function(){
     console.log(ztest);
 
     if(ztest == '1px') {
+      cssLoaded = true;
       clearInterval(thechecker);
       console.log('css loaded');
     }
