@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.4.1",
     "gulp-htmlclean": "^2.2.3",
     "gulp-imagemin": "^1.2.1",
