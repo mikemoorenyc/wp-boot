@@ -11,15 +11,12 @@ var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
    pngcrush = require('imagemin-pngcrush');
 
-function errorLog(error) {
-  console.error.bind(error);
-  this.emit('end');
-}
+
 
 gulp.task('js', function () {
    gulp.src(['js/jquery.js', 'js/plugins.js', 'js/site.js'])
       .pipe(uglify())
-      .on('error',errorLog)
+      .on('error', console.error.bind(console))
       .pipe(concat('main.js'))
       .pipe(gulp.dest('../'+buildDir+'/js'))
 });
@@ -27,17 +24,19 @@ gulp.task('js', function () {
 gulp.task('less', function () {
   gulp.src('less/main.less')
     .pipe(less())
-    .on('error',errorLog)
+    .on('error', console.error.bind(console))
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
   gulp.src('less/expanded.less')
     .pipe(less())
+    .on('error', console.error.bind(console))
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
   gulp.src('less/ie-fixes.css')
     .pipe(less())
+    .on('error', console.error.bind(console))
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
