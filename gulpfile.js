@@ -9,6 +9,7 @@ var gulp = require('gulp'),
    autoprefixer = require('gulp-autoprefixer'),
    imagemin = require('gulp-imagemin'),
    jshint = require('gulp-jshint'),
+   cache = require('gulp-cache'),
    pngcrush = require('imagemin-pngcrush');
 
 
@@ -42,20 +43,9 @@ gulp.task('less', function () {
     .pipe(gulp.dest('../'+buildDir+'/css'));
 });
 gulp.task('imgmin', function () {
-  gulp.src('assets/*')
-    .pipe(imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        use: [pngcrush()]
-    }))
-    .pipe(gulp.dest('../'+buildDir+'/assets'));
-  gulp.src('assets/icons/*')
-    .pipe(imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        use: [pngcrush()]
-    }))
-    .pipe(gulp.dest('../'+buildDir+'/assets/icons'));
+  gulp.src('assets/imgs/**/*')
+    .pipe(cache(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: [pngcrush()]})))
+    .pipe(gulp.dest('../'+buildDir+'/assets/imgs'));
 });
 gulp.task('templatecrush', function() {
   gulp.src('*.php')
@@ -63,6 +53,11 @@ gulp.task('templatecrush', function() {
 
       }))
     .pipe(gulp.dest('../'+buildDir));
+});
+
+gulp.task('fontdump', function(){
+  gulp.src('assets/fonts/**/*')
+    .pipe(gulp.dest('../'+buildDir+'/assets/fonts'));
 });
 
 gulp.task('lint', function() {
@@ -78,7 +73,8 @@ gulp.task('watch', function() {
     gulp.watch('js/*.js', ['js']);
     gulp.watch('less/*.less', ['less']);
     gulp.watch('less/*.css', ['less']);
-    gulp.watch('assets/*', ['imgmin']);
+    gulp.watch('assets/imgs/**/*', ['imgmin']);
+    gulp.watch('assets/fonts/**/*', ['fontdump']);
     gulp.watch('*.php', ['templatecrush']);
 });
-gulp.task('build', ['less', 'js', 'imgmin', 'templatecrush']);
+gulp.task('build', ['less', 'js', 'imgmin', 'templatecrush', 'fontdump']);
