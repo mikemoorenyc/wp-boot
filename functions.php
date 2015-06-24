@@ -11,4 +11,16 @@ add_post_type_support('page', 'excerpt');
 remove_action('wp_head', 'wp_generator');// Removes the WordPress version as a layer of simple security
 
 add_theme_support('post-thumbnails');
+
+
+// DIRECTORY REPLACER
+
+function dirReplacer($string) {
+  global $siteDir;
+  $time = time();
+  $newString = str_replace('***REPLACEWITHTHEMEDIRECTORY***', $siteDir, $string);
+  $newString = str_replace('***TIMESTAMP***', $time ,$newString);
+  echo $newString;
+}
+
 ?>

@@ -15,11 +15,15 @@ var gulp = require('gulp'),
 
 
 gulp.task('js', function () {
-   gulp.src(['js/jquery.js', 'js/plugins.js', 'js/site.js'])
-      .pipe(uglify())
-      .on('error', console.error.bind(console))
-      .pipe(concat('main.js'))
-      .pipe(gulp.dest('../'+buildDir+'/js'))
+  gulp.src(['js/jquery.js', 'js/plugins/*.js', 'js/site.js'])
+    .pipe(uglify())
+    .on('error', console.error.bind(console))
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('../'+buildDir+'/js'));
+  gulp.src('js/inline-load.js')
+    .pipe(uglify())
+    .on('error', console.error.bind(console))
+    .pipe(gulp.dest('../'+buildDir+'/js'));
 });
 
 gulp.task('less', function () {
@@ -60,6 +64,11 @@ gulp.task('fontdump', function(){
     .pipe(gulp.dest('../'+buildDir+'/assets/fonts'));
 });
 
+gulp.task('wpdump', function(){
+  gulp.src(['style.css', 'screenshot.png'])
+    .pipe(gulp.dest('../'+buildDir));
+});
+
 gulp.task('lint', function() {
   return gulp.src('js/*.js')
     .pipe(jshint())
@@ -76,5 +85,6 @@ gulp.task('watch', function() {
     gulp.watch('assets/imgs/**/*', ['imgmin']);
     gulp.watch('assets/fonts/**/*', ['fontdump']);
     gulp.watch('*.php', ['templatecrush']);
+    gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
 });
-gulp.task('build', ['less', 'js', 'imgmin', 'templatecrush', 'fontdump']);
+gulp.task('build', ['less', 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump']);
