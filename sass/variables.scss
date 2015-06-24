@@ -1,0 +1,25 @@
+$ts: 0.25s;
+
+/*Site Directory. Probably Don't need this*/
+//Looks like url('@{siteDir}/assets/whatever.png')
+
+
+
+$imgDir: '***REPLACEWITHTHEMEDIRECTORY***/assets/imgs';
+
+
+
+/*BREAK POINTS*/
+$tab: 'min-width:401px';
+$dt: 'min-width:801px';
+
+/* SITE COLORS */
+$body-bg: #fff;
+$main-color: #404041;
+$link-color: #bc812c;
+$link-color-hover: lighten(@link-color, 13.5%);
+
+/*FONTS*/
+$font-family:  "Helvetica", sans-serif;
+$font-size-base: 14px;
+$line-height-base:  1.428571429;
