@@ -6,6 +6,8 @@ $parentID = $post->post_parent;
 $parentslug = get_post($post->post_parent)->post_name;
 global $siteDir;
 $siteDir = get_bloginfo('template_url');
+global $homeURL;
+$homeURL = esc_url( home_url( '/' ) );
 ?>
 <!DOCTYPE html>
 <html lang="en" data-parent-slug="<?php echo $parentslug;?>" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
@@ -18,7 +20,7 @@ $siteDir = get_bloginfo('template_url');
 
 
 if ( is_front_page() ) {
-  $namer = "Menu";
+  $namer = "Home";
   ?>
   <title>125 W 25th</title>
   <?php
@@ -38,7 +40,7 @@ if (get_the_excerpt()) {
   //echo apply_filters('the_excerpt_rss', $out_excerpt);
   echo $out_excerpt;
 } else {
-  echo $namer;
+  echo get_bloginfo('description');
 }
 
 endwhile;
@@ -69,7 +71,7 @@ else: ?>
 <!-- For everything else -->
 <link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/icons/imgs/favicon.ico">
 
-
+<!--  STUFF FOR IE8 WILL GET REMOVED ON COMPILATION
 <!--[if lte IE 8]>
 <link rel="stylesheet" href="<?php echo $siteDir;?>/css/expanded.css" />
 	<link href='<?php echo $siteDir;?>/css/ie-fixes.css?ts=<?php echo time();?>' rel='stylesheet' type='text/css'>
@@ -78,14 +80,17 @@ else: ?>
 <![endif]-->
 
 
+<!-- FACEBOOK TAGS -->
+<!--
+<meta property="og:site_name" content="114 W 41st" />
+<meta property="og:title" content="Discover Different" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<?php echo $homeURL;?>" />
+<meta property="og:image" content="<?php echo $siteDir;?>/assets/blue-pin.jpg" />
+<meta property="og:description" content="<?php echo get_bloginfo('description');?>" />
+-->
+
 </head>
 
 <body <?php body_class(); ?> id="top">
 <div id="css-checker"></div>
-    <header role="banner">
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" class="logo"><?php bloginfo( 'name' ); ?></a>
-        <p class="desc">
-			<?php bloginfo( 'description' ); ?>
-        </p>
-
-    </header>
