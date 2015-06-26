@@ -1,4 +1,4 @@
-$(document).ready(function(){
+function siteInit() {
   //GLOBALS
   ts = 250,
   tab = 401,
@@ -12,9 +12,7 @@ $(document).ready(function(){
     orientationClass();
   });
 
-
-  //LOAD IN EXPANDED CSS
-  loadCSS(cssExpand);
+  //CHECK IF CSS IS LOADED
   var thechecker = setInterval(function(){
     var ztest = $('#css-checker').css('height');
 
@@ -27,10 +25,12 @@ $(document).ready(function(){
     }
 
   }, 500);
+
+
+
+
   $('body').addClass('page-loaded');
-});
-
-
+}
 function orientationClass() {
   if (windoww >= windowh) {
     $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');
@@ -38,3 +38,6 @@ function orientationClass() {
     $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
   }
 }
+
+
+siteScriptsLoaded = true;
