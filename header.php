@@ -53,9 +53,8 @@ else: ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-<!-- The little things -->
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="pingback" href="/xmlrpc.php" />
+
+
 <!-- icons & favicons -->
 <link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/imgs/icons/favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon.png" />
