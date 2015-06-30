@@ -28,15 +28,17 @@ gulp.task('js', function () {
 });
 
 gulp.task('sass', function () {
-  gulp.src('sass/main.scss')
+  gulp.src(['sass/main.scss', 'sass/inline-modules/*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
+    .pipe(concat('main.css'))
     .pipe(gulp.dest('../'+buildDir+'/css'));
-  gulp.src('sass/expanded.scss')
+  gulp.src(['sass/expanded.scss', 'sass/expanded-modules/*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
+    .pipe(concat('expanded.css'))
     .pipe(gulp.dest('../'+buildDir+'/css'));
   gulp.src('sass/ie-fixes.scss')
     .pipe(sass().on('error', sass.logError))
