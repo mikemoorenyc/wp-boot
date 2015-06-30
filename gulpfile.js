@@ -4,7 +4,6 @@ var gulp = require('gulp'),
   htmlclean = require('gulp-htmlclean'),
    uglify = require('gulp-uglify'),
    concat = require('gulp-concat'),
-//   less = require('gulp-less'),
    minifyCSS = require('gulp-minify-css'),
    autoprefixer = require('gulp-autoprefixer'),
    imagemin = require('gulp-imagemin'),
@@ -71,7 +70,7 @@ gulp.task('wpdump', function(){
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['js/site.js', 'modules/*.js'])
+  return gulp.src(['js/site.js', 'modules/*.js', 'js/inline-load.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
