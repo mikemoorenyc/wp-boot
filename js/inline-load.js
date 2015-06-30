@@ -10,7 +10,7 @@ loadCSS(cssExpand);
 
 var jquerychecker = setInterval(function(){
   if (typeof jQuery != 'undefined' && siteScriptsLoaded == true) {
-    console.log('jquery loaded');
+    console.log('scripts loaded');
     siteInit();
     clearInterval(jquerychecker);
   }
