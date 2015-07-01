@@ -12,6 +12,9 @@ function siteInit() {
     orientationClass();
   });
 
+  //theHistory();
+
+
   //CHECK IF CSS IS LOADED
   var thechecker = setInterval(function(){
     var ztest = $('#css-checker').css('height');
@@ -28,9 +31,15 @@ function siteInit() {
 
 
 
-
+  pageLoader();
   $('html').addClass('_page-loaded');
 }
+
+
+
+
+
+
 function orientationClass() {
   if (windoww >= windowh) {
     $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');

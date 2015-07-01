@@ -79,7 +79,7 @@ gulp.task('lint', function() {
 
 
 gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['js']);
+    gulp.watch('js/**/*.js', ['js']);
     gulp.watch('sass/**/*', ['sass']);
     gulp.watch('assets/imgs/**/*', ['imgmin']);
     gulp.watch('assets/fonts/**/*', ['fontdump']);
