@@ -24,12 +24,12 @@ function siteInit() {
       console.log('css loaded');
     }
 
-  }, 500);
+  }, 200);
 
 
 
 
-  $('body').addClass('page-loaded');
+  $('html').addClass('_page-loaded');
 }
 function orientationClass() {
   if (windoww >= windowh) {
