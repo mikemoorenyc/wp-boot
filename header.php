@@ -8,6 +8,10 @@ global $siteDir;
 $siteDir = get_bloginfo('template_url');
 global $homeURL;
 $homeURL = esc_url( home_url( '/' ) );
+global $siteTitle;
+$siteTitle = 'REA WORDPRESS BLANK THEME';
+global $siteDesc;
+$siteDesc = '';
 ?>
 <!DOCTYPE html>
 <html lang="en" data-parent-slug="<?php echo $parentslug;?>" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
@@ -22,32 +26,34 @@ $homeURL = esc_url( home_url( '/' ) );
 if ( is_front_page() ) {
   $namer = "Home";
   ?>
-  <title>125 W 25th</title>
+  <title><?php echo $siteTitle;?></title>
   <?php
 } else {
   $namer = get_the_title();
   ?>
 
-  <title><?php echo $namer;?> | 125 W 25th</title>
+  <title><?php echo $namer;?> | <?php echo $siteTitle;?></title>
   <?php
 }
 ?>
 
-<meta name="description" content="
-<?php if (have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
-if (get_the_excerpt()) {
-  $out_excerpt = str_replace(array("\r\n", "\r", "\n", "[&hellip;]"), "", get_the_excerpt());
-  //echo apply_filters('the_excerpt_rss', $out_excerpt);
-  echo $out_excerpt;
-} else {
-  echo get_bloginfo('description');
-}
+<meta name="description" content="<?php if (have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
+
+
+
+  if (get_the_excerpt()) {
+    $out_excerpt = str_replace(array("\r\n", "\r", "\n", "[&hellip;]"), "", get_the_excerpt());
+    //echo apply_filters('the_excerpt_rss', $out_excerpt);
+    $siteDesc = $out_excerpt;
+  } else {
+    $siteDesc =  get_bloginfo('description');
+  }
 
 endwhile;
 
 else: ?>
-<?php echo $namer; ?>
-<?php endif; ?>" />
+<?php $siteDesc = get_bloginfo('description'); ?>
+<?php endif; ?><?php echo $siteDesc;?>" />
 
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +76,7 @@ else: ?>
 <!-- For everything else -->
 <link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/icons/imgs/favicon.ico">
 
-<!--  STUFF FOR IE8 WILL GET REMOVED ON COMPILATION
+<!--  STUFF FOR IE8 WILL GET REMOVED ON COMPILATION // REMOVE THIS LINE TO RENDER IT
 <!--[if lte IE 8]>
 <link rel="stylesheet" href="<?php echo $siteDir;?>/css/expanded.css" />
 	<link href='<?php echo $siteDir;?>/css/ie-fixes.css?ts=<?php echo time();?>' rel='stylesheet' type='text/css'>
@@ -81,12 +87,12 @@ else: ?>
 
 <!-- FACEBOOK TAGS -->
 <!--
-<meta property="og:site_name" content="114 W 41st" />
-<meta property="og:title" content="Discover Different" />
+<meta property="og:site_name" content="<?php echo $siteTitle;?>" />
+<meta property="og:title" content="<?php echo get_bloginfo('description');?>" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo $homeURL;?>" />
 <meta property="og:image" content="<?php echo $siteDir;?>/assets/blue-pin.jpg" />
-<meta property="og:description" content="<?php echo get_bloginfo('description');?>" />
+<meta property="og:description" content="<?php echo $siteDesc;?>" />
 -->
 
 </head>
