@@ -1,5 +1,5 @@
 //EM ASPECT RATIOER
-function aspecter(theObject, baseWidth) {
+function aspecter() {
   $('.aspecter').each(function(){
     var theObject = $(this),
         baseWidth = $(theObject).data('basewidth'),
