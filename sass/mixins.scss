@@ -20,10 +20,33 @@
   white-space: nowrap;
 }
 
+@mixin before-fix() {
+  display: block;
+  content:'';
+}
+
 
 
 @mixin cover() {
   background-size: cover;
   background-position: top right;
   background-repeat: no-repeat;
+}
+
+@mixin ab-cover() {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+@mixin inline-centerer() {
+  letter-spacing: -4px;
+  > * {
+    display: inline-block;
+    letter-spacing:normal;
+    vertical-align: middle;
+  }
 }

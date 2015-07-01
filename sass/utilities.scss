@@ -45,6 +45,13 @@
   visibility: hidden !important;
 }
 
-
-// For Affix plugin
-// -------------------------
+/// GAH BAGE
+.text-overflow  {
+  @include text-overflow();
+}
+.inline-centerer {
+  @include inline-centerer();
+}
+.ab-cover {
+  @include ab-cover();
+}
