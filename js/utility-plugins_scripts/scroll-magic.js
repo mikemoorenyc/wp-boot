@@ -1,10 +1,5 @@
 function scrollMagic() {
 
-
-
-
-
-
   var cutoff = windowh /2;
 
   var stop = $(document).scrollTop();

@@ -19,19 +19,21 @@ function siteInit() {
   var thechecker = setInterval(function(){
     var ztest = $('#css-checker').css('height');
 
-    console.log(ztest);
-
     if(ztest == '1px') {
       cssLoaded = true;
       clearInterval(thechecker);
       console.log('css loaded');
     }
-
   }, 200);
 
 
 
+
+
+
+
   pageLoader();
+
   $('html').addClass('_page-loaded');
 }
 
