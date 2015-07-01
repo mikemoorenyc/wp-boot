@@ -9,21 +9,7 @@ function scrollMagic() {
 
   var stop = $(document).scrollTop();
 
-  //FOR BACK TO TOP
-
-  var halfPage = $('#outer-page-wrap').height() /3;
-
-  if(stop >= halfPage) {
-    if($('a.back-to-top').hasClass("__activated") == false) {
-      $('a.back-to-top').addClass('__activated').velocity('fadeIn');
-
-    }
-  } else {
-    if($('a.back-to-top').hasClass("__activated") == true) {
-      $('a.back-to-top').removeClass('__activated').velocity('fadeOut');
-
-    }
-  }
+  
 
   $('.scroll-magic').each(function(){
     var theMagic = $(this);
