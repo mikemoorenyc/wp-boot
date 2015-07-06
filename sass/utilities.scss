@@ -3,6 +3,57 @@
 // --------------------------------------------------
 
 
+// UTILITY MIXINS
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: ""; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+@mixin center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin before-fix() {
+  display: block;
+  content:'';
+}
+
+@mixin bg-cover() {
+  background-size: cover;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+@mixin ab-cover() {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+@mixin inline-centerer() {
+  letter-spacing: -4px;
+  > * {
+    display: inline-block;
+    letter-spacing:normal;
+    vertical-align: middle;
+  }
+}
+
+
 // Floats
 // -------------------------
 
@@ -20,10 +71,6 @@
 }
 
 
-// Toggling content
-// -------------------------
-
-// Note: Deprecated .hide in favor of .hidden or .sr-only (as appropriate) in v3.0.1
 .hide {
   display: none !important;
 }
@@ -34,18 +81,12 @@
   visibility: hidden;
 }
 
-
-
-// Hide from screenreaders and browsers
-//
-// Credit: HTML5 Boilerplate
-
-.hidden {
+.hidden, .hide {
   display: none !important;
   visibility: hidden !important;
 }
 
-/// GAH BAGE
+// UTILITY CLASSES
 .text-overflow  {
   @include text-overflow();
 }
@@ -54,4 +95,27 @@
 }
 .ab-cover {
   @include ab-cover();
+}
+
+// UTILITY PLACEHOLDER EXTENDERS
+%clearfix {
+  @include clearfix();
+}
+%center-block {
+  @include center-block();
+}
+%text-overflow {
+  @include text-overflow();
+}
+%before-fix {
+  @include before-fix();
+}
+%bg-cover {
+  @include bg-cover();
+}
+%ab-cover {
+  @include ab-cover();
+}
+%inline-centerer {
+  @include inline-centerer();
 }

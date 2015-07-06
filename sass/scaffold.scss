@@ -58,7 +58,8 @@ a, a:hover, a:active, a:focus {
 // IMGS
 img {
   display: block;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 100%;
 }
 
@@ -68,11 +69,17 @@ h1, h2, h3, h4, h5, h6,
 
 }
 
+//TESTING OUT DEAD OWL SCAFFOLD MARGINS
+* + * {
+  margin-top: 1em;
+}
+
+
 //TYPE STUFF
 ul, p {
-  margin-bottom: 1.5em;
+  //margin-bottom: 1.5em;
 }
-ul li {
+ul > li {
   margin: 0 0 0 15px;
 }
 ul.no-style {
