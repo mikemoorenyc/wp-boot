@@ -1,15 +1,26 @@
 <?php
 
+//GET POST SLUG
 global $post;
 $slug = $post->post_name;
+
+//GET POST PARENT
 $parentID = $post->post_parent;
-$parentslug = get_post($post->post_parent)->post_name;
+$parentslug = get_post($parentID)->post_name;
+
+//GET THEME DIRECTORY
 global $siteDir;
 $siteDir = get_bloginfo('template_url');
+
+//GET HOME URL
 global $homeURL;
 $homeURL = esc_url( home_url( '/' ) );
+
+//DECLARE THE SITE TITLE, SAVE A DB QUERY
 global $siteTitle;
 $siteTitle = 'REA WORDPRESS BLANK THEME';
+
+//DECLARE THE PAGE EXCERPT
 global $siteDesc;
 $siteDesc = '';
 ?>
@@ -17,6 +28,7 @@ $siteDesc = '';
 <html lang="en" data-parent-slug="<?php echo $parentslug;?>" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
 <head>
 
+<!-- ABOVE THE FOLD CSS -->
 <style><?php $inlinecss = file_get_contents($siteDir.'/css/main.css'); dirReplacer($inlinecss);?></style>
 
 
@@ -37,6 +49,7 @@ if ( is_front_page() ) {
 }
 ?>
 
+<!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <meta name="description" content="<?php if (have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
 
 
@@ -85,7 +98,7 @@ else: ?>
 <![endif]-->
 
 
-<!-- FACEBOOK TAGS -->
+<!-- FACEBOOK TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
 <!--
 <meta property="og:site_name" content="<?php echo $siteTitle;?>" />
 <meta property="og:title" content="<?php echo get_bloginfo('description');?>" />
