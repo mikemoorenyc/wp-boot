@@ -44,7 +44,13 @@ gulp.task('sass', function () {
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
+  gulp.src('editor-styles.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
+    .pipe(gulp.dest('../'+buildDir));
 })
+
 
 
 gulp.task('imgmin', function () {
@@ -80,7 +86,7 @@ gulp.task('lint', function() {
 
 gulp.task('watch', function() {
     gulp.watch('js/**/*.js', ['js']);
-    gulp.watch('sass/**/*', ['sass']);
+    gulp.watch(['sass/**/*', 'editor-styles.scss'], ['sass']);
     gulp.watch('assets/imgs/**/*', ['imgmin']);
     gulp.watch('assets/fonts/**/*', ['fontdump']);
     gulp.watch('*.php', ['templatecrush']);
