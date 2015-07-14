@@ -2,15 +2,15 @@ var buildDir = 'islandia-build';
 //
 var gulp = require('gulp'),
   htmlclean = require('gulp-htmlclean'),
-   uglify = require('gulp-uglify'),
-   concat = require('gulp-concat'),
-   minifyCSS = require('gulp-minify-css'),
-   autoprefixer = require('gulp-autoprefixer'),
-   imagemin = require('gulp-imagemin'),
-   jshint = require('gulp-jshint'),
-   cache = require('gulp-cache'),
-   pngcrush = require('imagemin-pngcrush');
-   sass = require('gulp-sass');
+  uglify = require('gulp-uglify'),
+  concat = require('gulp-concat'),
+  minifyCSS = require('gulp-minify-css'),
+  autoprefixer = require('gulp-autoprefixer'),
+  imagemin = require('gulp-imagemin'),
+  jshint = require('gulp-jshint'),
+  cache = require('gulp-cache'),
+  pngcrush = require('imagemin-pngcrush');
+  sass = require('gulp-sass');
 
 
 
