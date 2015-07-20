@@ -65,6 +65,10 @@ gulp.task('templatecrush', function() {
     .pipe(gulp.dest('../'+buildDir));
 });
 
+gulp.task('clear', function (done) {
+  return cache.clearAll(done);
+});
+
 gulp.task('fontdump', function(){
   gulp.src('assets/fonts/**/*')
     .pipe(gulp.dest('../'+buildDir+'/assets/fonts'));
