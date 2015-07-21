@@ -24,7 +24,7 @@ function siteInit() {
       clearInterval(thechecker);
       console.log('css loaded');
     }
-  }, 200);
+  }, 10);
 
 
 
@@ -35,6 +35,7 @@ function siteInit() {
   pageLoader();
 
   $('html').addClass('_page-loaded');
+  console.log('scripts loaded');
 }
 
 
