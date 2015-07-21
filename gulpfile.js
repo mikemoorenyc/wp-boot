@@ -60,7 +60,7 @@ gulp.task('imgmin', function () {
 });
 
 gulp.task('templatecrush', function() {
-  gulp.src('*.php')
+  gulp.src(['*.php','*.html','!custom-module-functions.php'])
     .pipe(cache(htmlclean({})))
     .pipe(gulp.dest('../'+buildDir));
 });
@@ -93,7 +93,7 @@ gulp.task('watch', function() {
     gulp.watch(['sass/**/*', 'editor-styles.scss'], ['sass']);
     gulp.watch('assets/imgs/**/*', ['imgmin']);
     gulp.watch('assets/fonts/**/*', ['fontdump']);
-    gulp.watch('*.php', ['templatecrush']);
+    gulp.watch(['*.php', '*.html'], ['templatecrush']);
     gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
 });
 gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass']);
