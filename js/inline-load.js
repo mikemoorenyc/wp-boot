@@ -11,10 +11,13 @@ loadCSS(cssExpand);
 
 
 var jquerychecker = setInterval(function(){
-  if (typeof jQuery != 'undefined' && siteScriptsLoaded == true) {
-    console.log('scripts loaded');
-    siteInit();
+  if (typeof jQuery != 'undefined' ) {
+    console.log('jquery loaded');
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = siteDir+"/js/main.js?v="+timestamp;
+    $("body").append(s);
     clearInterval(jquerychecker);
   }
 
-}, 100);
+}, 10);
