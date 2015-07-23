@@ -1,4 +1,4 @@
-var buildDir = 'islandia-build';
+var buildDir = 'build';
 //
 var gulp = require('gulp'),
   htmlclean = require('gulp-htmlclean'),
