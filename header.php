@@ -85,9 +85,9 @@ else: ?>
 <link rel="apple-touch-icon" sizes="144x144" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-144x144.png" />
 <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-152x152.png" />
 <!-- For Nokia -->
-<link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/icons/imgs/apple-touch-icon.png">
+<link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon.png">
 <!-- For everything else -->
-<link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/icons/imgs/favicon.ico">
+<link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/imgs/icons/favicon.ico">
 
 <!--  STUFF FOR IE8 WILL GET REMOVED ON COMPILATION // REMOVE THIS LINE TO RENDER IT
 <!--[if lte IE 8]>
