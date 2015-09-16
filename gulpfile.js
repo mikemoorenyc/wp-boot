@@ -9,10 +9,17 @@ var gulp = require('gulp'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
   cache = require('gulp-cache'),
-  pngcrush = require('imagemin-pngcrush');
+  pngcrush = require('imagemin-pngcrush'),
+  svgstore = require('gulp-svgstore'),
   sass = require('gulp-sass');
 
-
+gulp.task('svgstore', function () {
+    return gulp
+        .src('assets/svgs/*.svg')
+        .pipe(imagemin())
+        .pipe(svgstore({ inlineSvg: true }))
+        .pipe(gulp.dest('../'+buildDir+'/assets'));
+});
 
 gulp.task('js', function () {
   gulp.src([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'])
@@ -95,5 +102,6 @@ gulp.task('watch', function() {
     gulp.watch('assets/fonts/**/*', ['fontdump']);
     gulp.watch(['*.php', '*.html'], ['templatecrush']);
     gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
+    gulp.watch(['assets/svgs/*.svg'], ['svgstore']);
 });
-gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass']);
+gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore']);
