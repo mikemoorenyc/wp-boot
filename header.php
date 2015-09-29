@@ -14,7 +14,7 @@ $siteDir = get_bloginfo('template_url');
 
 //GET HOME URL
 global $homeURL;
-$homeURL = esc_url( home_url( '/' ) );
+$homeURL = esc_url( home_url( ) );
 
 //DECLARE THE SITE TITLE, SAVE A DB QUERY
 global $siteTitle;
@@ -62,10 +62,14 @@ if ( is_front_page() ) {
     $siteDesc =  get_bloginfo('description');
   }
 
+  if($siteDesc == '') {
+    $siteDesc =  get_bloginfo('description');
+  }
+
 endwhile;
 
 else: ?>
-<?php $siteDesc = get_bloginfo('description'); ?>
+<?php $siteDesc = ''; ?>
 <?php endif; ?><?php echo $siteDesc;?>" />
 
 <meta charset="UTF-8" />

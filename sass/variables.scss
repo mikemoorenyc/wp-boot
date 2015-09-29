@@ -10,8 +10,11 @@ $siteDir: '***REPLACEWITHTHEMEDIRECTORY***';
 
 
 /*BREAK POINTS*/
+$dt-break: 801px;
+$dt-max-break: ($dt-break - 1px);
 $tab: 'min-width:401px';
-$dt: 'min-width:801px';
+$dt: 'min-width:#{$dt-break}';
+$dt-max: 'max-width:#{$dt-max-break}';
 
 /* SITE COLORS */
 $body-bg: #fff;
