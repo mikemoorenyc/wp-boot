@@ -55,6 +55,10 @@ img {
   margin-right: auto;
   max-width: 100%;
 }
+svg {
+  display: block;
+  max-width:100%;
+}
 
 //TYPE
 h1, h2, h3, h4, h5, h6,
@@ -62,24 +66,32 @@ h1, h2, h3, h4, h5, h6,
 
 }
 
-//TESTING OUT DEAD OWL SCAFFOLD MARGINS
-* + * {
-  margin-top: 1em;
-}
 
 
 //TYPE STUFF
-ul, p {
-  //margin-bottom: 1.5em;
-}
-ul > li {
-  margin: 0 0 0 15px;
+ul, p, ol {
+  margin-bottom: 1.0em;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 ul.no-style {
   margin: 0;
+  padding: 0;
   list-style: none;
   li {
     margin: 0;
+  }
+}
+ol, ul {
+  margin: 0;
+  margin-bottom: 1.5em;
+  padding-left: 40px;
+  > li {
+    margin-bottom: .25em;
+  }
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 blockquote {
@@ -94,7 +106,7 @@ blockquote {
   ul,
   ol {
     &:last-child {
-    //  margin-bottom: 0;
+      margin-bottom: 0;
     }
   }
 

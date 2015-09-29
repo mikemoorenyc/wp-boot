@@ -119,3 +119,19 @@
 %inline-centerer {
   @include inline-centerer();
 }
+
+//HIDING
+// MOBILE HIDE
+
+.mob-hide {
+  @media($dt-max) {
+    display: none !important;
+  }
+}
+
+// DT HIDE
+.dt-hide {
+  @media($dt) {
+    display: none !important;
+  }
+}
