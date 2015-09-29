@@ -34,13 +34,13 @@ gulp.task('js', function () {
 });
 
 gulp.task('sass', function () {
-  gulp.src(['sass/main.scss', 'sass/inline-modules/*.scss'])
+  gulp.src(['sass/main.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(concat('main.css'))
     .pipe(gulp.dest('../'+buildDir+'/css'));
-  gulp.src(['sass/expanded.scss', 'sass/expanded-modules/*.scss'])
+  gulp.src(['sass/expanded.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
@@ -69,7 +69,7 @@ gulp.task('imgmin', function () {
 gulp.task('templatecrush', function() {
   gulp.src(['*.php','*.html','!custom-module-functions.php'])
     .pipe(cache(htmlclean({})))
-    .pipe(gulp.dest('../'+buildDir));
+    .pipe(cache(gulp.dest('../'+buildDir)));
 });
 
 gulp.task('clear', function (done) {
