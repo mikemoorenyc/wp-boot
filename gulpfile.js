@@ -8,9 +8,9 @@ var gulp = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
-  cache = require('gulp-cache'),
   pngcrush = require('imagemin-pngcrush'),
   svgstore = require('gulp-svgstore'),
+  changed = require('gulp-changed'),
   sass = require('gulp-sass');
 
 gulp.task('svgstore', function () {
@@ -62,19 +62,19 @@ gulp.task('sass', function () {
 
 gulp.task('imgmin', function () {
   gulp.src('assets/imgs/**/*')
-    .pipe(cache(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: [pngcrush()]})))
+    .pipe(changed('../'+buildDir+'/assets/imgs'))
+    .pipe(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: [pngcrush()]}))
     .pipe(gulp.dest('../'+buildDir+'/assets/imgs'));
 });
 
 gulp.task('templatecrush', function() {
   gulp.src(['*.php','*.html','!custom-module-functions.php'])
-    .pipe(cache(htmlclean({})))
-    .pipe(cache(gulp.dest('../'+buildDir)));
+    .pipe(changed('../'+buildDir))
+    .pipe(htmlclean({}))
+    .pipe(gulp.dest('../'+buildDir));
 });
 
-gulp.task('clear', function (done) {
-  return cache.clearAll(done);
-});
+
 
 gulp.task('fontdump', function(){
   gulp.src('assets/fonts/**/*')
