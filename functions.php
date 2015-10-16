@@ -17,8 +17,8 @@ add_theme_support('post-thumbnails');
 
 add_action( 'admin_init', 'my_theme_add_editor_styles' );
 function my_theme_add_editor_styles() {
-    add_editor_style( 'editor-styles.css' );
-}
+    add_editor_style( 'css/editor-styles.css' );
+}  
 
 // DIRECTORY REPLACER
 

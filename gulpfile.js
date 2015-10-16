@@ -1,17 +1,21 @@
-var buildDir = 'build';
+var buildDir = 'build-new';
 //
 var gulp = require('gulp'),
   htmlclean = require('gulp-htmlclean'),
   uglify = require('gulp-uglify'),
   concat = require('gulp-concat'),
-  minifyCSS = require('gulp-minify-css'),
-  autoprefixer = require('gulp-autoprefixer'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
   pngcrush = require('imagemin-pngcrush'),
   svgstore = require('gulp-svgstore'),
-  changed = require('gulp-changed'),
-  sass = require('gulp-sass');
+  changed = require('gulp-changed');
+
+//CSS STACK
+var sass = require('gulp-sass'),
+    minifyCSS = require('gulp-minify-css'),
+    postcss = require('gulp-postcss'),
+    mqpacker = require('css-mqpacker'),
+    autoprefixer = require('autoprefixer')
 
 gulp.task('svgstore', function () {
     return gulp
@@ -34,28 +38,17 @@ gulp.task('js', function () {
 });
 
 gulp.task('sass', function () {
-  gulp.src(['sass/main.scss'])
+
+  var processors = [
+    autoprefixer({ browsers: ['last 2 versions'] }),
+    mqpacker
+  ];
+
+  gulp.src(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','editor-styles.scss'])
     .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer())
-    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(concat('main.css'))
-    .pipe(gulp.dest('../'+buildDir+'/css'));
-  gulp.src(['sass/expanded.scss'])
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer())
-    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(concat('expanded.css'))
-    .pipe(gulp.dest('../'+buildDir+'/css'));
-  gulp.src('sass/ie-fixes.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer())
+    .pipe(postcss(processors))
     .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
-  gulp.src('editor-styles.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer())
-    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
-    .pipe(gulp.dest('../'+buildDir));
 })
 
 
