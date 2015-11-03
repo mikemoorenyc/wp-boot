@@ -5,6 +5,8 @@ button, input, textarea {
   background: none;
   border: 0;
   outline:0;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 html {
   font-size: 10px;
