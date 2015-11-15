@@ -43,6 +43,9 @@ function theHistory() {
 
   $document.ready(function () {
       $document.on('click', 'a.internal', function (event) {
+        if($('html').hasClass('__page-loading') == true) {
+          return false;
+        }
         $('html').removeClass('__menu-opened').addClass('__menu-closed');
 
           if (event.which == 2 || event.ctrlKey || event.metaKey) {
