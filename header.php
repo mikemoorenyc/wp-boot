@@ -81,7 +81,7 @@ else: ?>
 <!-- icons & favicons -->
 <link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/imgs/icons/favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon.png" />
-<link rel="apple-touch-icon" sizes="57x57" href="<?php echo $siteDir;?>/assets/imgs/imgs/icons/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-72x72.png" />
 <link rel="apple-touch-icon" sizes="76x76" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-114x114.png" />
