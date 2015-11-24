@@ -23,6 +23,8 @@ Steps to set up wordpress site
 Generator I use for favicons
 ----------------------------
 
+DONT DO THIS ANYMORE! As of Wordpress 4.3, favicons, will be handled through the customization thing that wordpress does. 
+
 I use [this generator](http://www.favicomatic.com/). Make sure you select "Every damn size, sir!" to get all the different sizes made.
 
 
