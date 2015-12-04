@@ -15,7 +15,7 @@ var sass = require('gulp-sass'),
 gulp.task('sass', function () {
 
   var processors = [
-    autoprefixer({ browsers: ['last 2 versions'] }),
+    autoprefixer({ browsers: ['last 3 versions'] }),
     mqpacker
   ];
 
