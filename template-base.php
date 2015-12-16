@@ -3,8 +3,8 @@
  * Template Name: Base Template Page
  */
 ?>
-<?php global $siteDir; global $homeURL;?>
 
-<?php get_header(); ?>
+
+<?php include 'header.php'; ?>
   <?php get_template_part( 'loop', 'index' ); ?>
-<?php get_footer(); ?>
+<?php include 'footer.php'; ?>

@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php include 'header.php'; ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 	<?php /* How to display standard posts and search results */ ?>
 
@@ -14,4 +14,4 @@
 
 
 <?php endwhile; // End the loop. Whew. ?>
-<?php get_footer(); ?>
+<?php include 'footer.php'; ?>

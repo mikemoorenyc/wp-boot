@@ -5,8 +5,8 @@ global $post;
 $slug = $post->post_name;
 
 //GET POST PARENT
-$parentID = $post->post_parent;
-$parentslug = get_post($parentID)->post_name;
+//$parentID = $post->post_parent;
+//$parentslug = get_post($parentID)->post_name;
 
 //GET THEME DIRECTORY
 global $siteDir;
@@ -25,7 +25,7 @@ global $siteDesc;
 $siteDesc = '';
 ?>
 <!DOCTYPE html>
-<html lang="en" data-parent-slug="<?php echo $parentslug;?>" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
+<html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
 <head>
 
 <!-- ABOVE THE FOLD CSS -->
@@ -50,7 +50,8 @@ if ( is_front_page() ) {
 ?>
 
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
-<meta name="description" content="<?php if (have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
+<?php
+if ( have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
 
 
 
@@ -70,7 +71,8 @@ endwhile;
 
 else: ?>
 <?php $siteDesc = ''; ?>
-<?php endif; ?><?php echo $siteDesc;?>" />
+<?php endif; ?><?php echo $siteDesc;?>
+<meta name="description" content="<?php echo $siteDesc;?>" />
 
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -78,22 +80,9 @@ else: ?>
 
 
 <?php wp_site_icon();?>
-<!-- DEPRECATED icons & favicons DEPRECATED-->
-<!-- <link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/imgs/icons/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon.png" />
-<link rel="apple-touch-icon" sizes="57x57" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-57x57.png" />
-<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-72x72.png" />
-<link rel="apple-touch-icon" sizes="76x76" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-76x76.png" />
-<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-114x114.png" />
-<link rel="apple-touch-icon" sizes="120x120" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-120x120.png" />
-<link rel="apple-touch-icon" sizes="144x144" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-144x144.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon-152x152.png" />
 
-<link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/imgs/icons/apple-touch-icon.png">
 
-<link rel="shortcut icon" href="<?php echo $siteDir;?>/assets/imgs/icons/favicon.ico"> -->
-
-<!--  STUFF FOR IE8 WILL GET REMOVED ON COMPILATION // REMOVE THIS LINE TO RENDER IT 
+<!--  STUFF FOR IE8 WILL GET REMOVED ON COMPILATION // REMOVE THIS LINE TO RENDER IT
 <!--[if lte IE 8]>
 <link rel="stylesheet" href="<?php echo $siteDir;?>/css/expanded.css" />
 	<link href='<?php echo $siteDir;?>/css/ie-fixes.css?ts=<?php echo time();?>' rel='stylesheet' type='text/css'>
@@ -105,7 +94,7 @@ else: ?>
 <!-- FACEBOOK TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
 <!--
 <meta property="og:site_name" content="<?php echo $siteTitle;?>" />
-<meta property="og:title" content="<?php echo get_bloginfo('description');?>" />
+<meta property="og:title" content="<?php echo $siteDesc;?>" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo $homeURL;?>" />
 <meta property="og:image" content="<?php echo $siteDir;?>/assets/blue-pin.jpg" />
@@ -114,5 +103,5 @@ else: ?>
 
 </head>
 
-<body <?php body_class(); ?> id="top">
+<body id="top">
 <div id="css-checker"></div>
