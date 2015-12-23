@@ -22,7 +22,7 @@ $siteTitle = 'REA WORDPRESS BLANK THEME';
 
 //DECLARE THE PAGE EXCERPT
 global $siteDesc;
-$siteDesc = '';
+$siteDesc = get_bloginfo('description');
 ?>
 <!DOCTYPE html>
 <html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
@@ -70,8 +70,8 @@ if ( have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
 endwhile;
 
 else: ?>
-<?php $siteDesc = ''; ?>
-<?php endif; ?><?php echo $siteDesc;?>
+
+<?php endif; ?>
 <meta name="description" content="<?php echo $siteDesc;?>" />
 
 <meta charset="UTF-8" />
