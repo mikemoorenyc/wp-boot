@@ -10,12 +10,33 @@ function loadCSS(e,t,n){"use strict";function o(){var t;for(var i=0;i<s.length;i
 loadCSS(cssExpand);
 
 
-var jquerychecker = setInterval(function(){
 
-  if (typeof jQuery != 'undefined' ) {
+
+function loadScript(url, callback) {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.async = true;
+    if (script.readyState) {
+        script.onreadystatechange = function () {
+            if (script.readyState == "loaded" || script.readyState == "complete") {
+                script.onreadystatechange = null;
+                if (callback && typeof callback === "function") {
+                    callback();
+                }
+            }
+        };
+    } else {
+        script.onload = function () {
+            if (callback && typeof callback === "function") {
+                callback();
+            }
+        };
+    }
+    script.src = url;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+}
+// How to use it
+loadScript("//code.jquery.com/jquery-1.11.0.min.js", function () {
     console.log('jquery loaded');
     $.getScript(siteDir+"/js/main.js?v="+timestamp);
-    clearInterval(jquerychecker);
-  } 
-
-}, 10);
+});
