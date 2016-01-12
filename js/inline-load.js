@@ -36,7 +36,7 @@ function loadScript(url, callback) {
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
 }
 // How to use it
-loadScript("//code.jquery.com/jquery-1.11.0.min.js", function () {
+loadScript("//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js", function () {
     console.log('jquery loaded');
     $.getScript(siteDir+"/js/main.js?v="+timestamp);
 });
