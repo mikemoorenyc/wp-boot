@@ -18,7 +18,7 @@ $homeURL = esc_url( home_url( ) );
 
 //DECLARE THE SITE TITLE, SAVE A DB QUERY
 global $siteTitle;
-$siteTitle = 'REA WORDPRESS BLANK THEME';
+$siteTitle = get_bloginfo('name');
 
 //DECLARE THE PAGE EXCERPT
 global $siteDesc;
