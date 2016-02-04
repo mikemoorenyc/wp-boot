@@ -12,7 +12,6 @@ Steps to set up wordpress site
 ==============================
 1. Run `sudo npm install` to install all the needed gulp modules.
 1. In `gulpfile.js`, change the `buildDir` variable to the appropriate folder name. I usually do something like `<nameofproject>-build`.
-
 4. Set up your variables for width breaks in `scss/variables.scss` & `js/site.js`.
 5. Create your favicons.
 6. In `style.css`, change the content up at the top so it relates to the site you're building.
