@@ -9,20 +9,20 @@ $slug = $post->post_name;
 //$parentslug = get_post($parentID)->post_name;
 
 //GET THEME DIRECTORY
-global $siteDir;
+
 $siteDir = get_bloginfo('template_url');
 
 //GET HOME URL
-global $homeURL;
+
 $homeURL = esc_url( home_url( ) );
 
 //DECLARE THE SITE TITLE, SAVE A DB QUERY
-global $siteTitle;
-$siteTitle = 'REA WORDPRESS BLANK THEME';
+
+$siteTitle = get_bloginfo('name');
 
 //DECLARE THE PAGE EXCERPT
-global $siteDesc;
-$siteDesc = '';
+
+$siteDesc = get_bloginfo('description');
 ?>
 <!DOCTYPE html>
 <html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">

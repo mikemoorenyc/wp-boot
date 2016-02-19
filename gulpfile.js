@@ -4,25 +4,27 @@ var buildDir = 'build-new';
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     changed = require('gulp-changed');
-
+var  htmlclean = require('gulp-htmlclean');
+var minifyInline = require('gulp-minify-inline');
 //CSS PROCESSING
 var sass = require('gulp-sass'),
     minifyCSS = require('gulp-minify-css'),
     postcss = require('gulp-postcss'),
     mqpacker = require('css-mqpacker'),
     autoprefixer = require('autoprefixer');
+    cssnano = require('cssnano');
 
 gulp.task('sass', function () {
 
   var processors = [
     autoprefixer({ browsers: ['last 3 versions'] }),
-    mqpacker
+    mqpacker,
+    cssnano({discardComments: {removeAll: true}})
   ];
 
   gulp.src(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','sass/editor-styles.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors))
-    .pipe(minifyCSS({keepBreaks:false, keepSpecialComments: 0}))
     .pipe(gulp.dest('../'+buildDir+'/css'));
 });
 
@@ -49,11 +51,12 @@ gulp.task('lint', function() {
 });
 
 //HTML PROCESSING
-var  htmlclean = require('gulp-htmlclean');
+
 
 gulp.task('templatecrush', function() {
   gulp.src(['*.php','*.html','!custom-module-functions.php'])
     .pipe(changed('../'+buildDir))
+    .pipe(minifyInline())
     .pipe(htmlclean({}))
     .pipe(gulp.dest('../'+buildDir));
 });
