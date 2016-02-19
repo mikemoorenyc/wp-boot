@@ -1,27 +1,21 @@
 <?php
-
 //GET POST SLUG
 global $post;
 $slug = $post->post_name;
-
 //GET POST PARENT
 //$parentID = $post->post_parent;
 //$parentslug = get_post($parentID)->post_name;
-
 //GET THEME DIRECTORY
-
+global $siteDir;
 $siteDir = get_bloginfo('template_url');
-
 //GET HOME URL
-
+global $homeURL;
 $homeURL = esc_url( home_url( ) );
-
 //DECLARE THE SITE TITLE, SAVE A DB QUERY
-
+global $siteTitle;
 $siteTitle = get_bloginfo('name');
-
 //DECLARE THE PAGE EXCERPT
-
+global $siteDesc;
 $siteDesc = get_bloginfo('description');
 ?>
 <!DOCTYPE html>
@@ -33,8 +27,6 @@ $siteDesc = get_bloginfo('description');
 
 
 <?php
-
-
 if ( is_front_page() ) {
   $namer = "Home";
   ?>
@@ -52,9 +44,6 @@ if ( is_front_page() ) {
 <!-- HERE'S WHERE WE GET THE SITE DESCRIPTION -->
 <?php
 if ( have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
-
-
-
   if (get_the_excerpt()) {
     $out_excerpt = str_replace(array("\r\n", "\r", "\n", "[&hellip;]"), "", get_the_excerpt());
     //echo apply_filters('the_excerpt_rss', $out_excerpt);
@@ -62,16 +51,13 @@ if ( have_posts() && is_single() OR is_page()):while(have_posts()):the_post();
   } else {
     $siteDesc =  get_bloginfo('description');
   }
-
   if($siteDesc == '') {
     $siteDesc =  get_bloginfo('description');
   }
-
 endwhile;
-
 else: ?>
-<?php $siteDesc = ''; ?>
-<?php endif; ?><?php echo $siteDesc;?>
+
+<?php endif; ?>
 <meta name="description" content="<?php echo $siteDesc;?>" />
 
 <meta charset="UTF-8" />
