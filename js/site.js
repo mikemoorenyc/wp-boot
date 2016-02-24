@@ -6,15 +6,32 @@ function siteInit() {
     wh: $(window).height(),
     dt: 801,
     tab: 401,
-    ts: 250
-  }
+    ts: 500,
+    orientation = function() {
+      function decider(w,x) {
+        if (w >= x) {
+        $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');
+        }else {
+         $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
+        }
+      }
+      decider(this.parent.ww,this.parent.wh);
+      
+      $(window).resize(function(){
+        this.parent.ww = $(window).width();
+        this.parent.wh = $(window).height();
+        decider(this.parent.ww,this.parent.wh);
+      });
+    }
+  }.orientation();
 
-  orientationClass();
+ /* orientationClass();
   $(window).resize(function(){
     myApp.ww = $(window).width(),
     myApp.wh = $(window).height();
     orientationClass();
   });
+  */
 
   //theHistory();
 
@@ -45,7 +62,7 @@ function siteInit() {
 
 
 
-
+/*
 
 function orientationClass() {
   if (myApp.ww >= myApp.wh) {
@@ -55,7 +72,7 @@ function orientationClass() {
   }
 }
 
-
+*/
 
 //DON'T TOUCH
 
