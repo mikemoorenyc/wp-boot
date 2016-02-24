@@ -28,15 +28,15 @@ $siteDesc = get_bloginfo('description');
 
 <?php
 if ( is_front_page() ) {
-  $namer = "Home";
+  $pageTitle = $siteTitle;
   ?>
   <title><?php echo $siteTitle;?></title>
   <?php
 } else {
-  $namer = get_the_title();
+  $pageTitle = get_the_title();
   ?>
 
-  <title><?php echo $namer;?> | <?php echo $siteTitle;?></title>
+  <title><?php echo $pageTitle;?> | <?php echo $siteTitle;?></title>
   <?php
 }
 ?>
@@ -77,14 +77,19 @@ else: ?>
 <![endif]-->
 
 
-<!-- FACEBOOK TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
+<!-- FACEBOOK & TWiTTER TAGS REMOVED ON COMPILATION UNLESS YOU UNCOMMENT-->
 <!--
 <meta property="og:site_name" content="<?php echo $siteTitle;?>" />
-<meta property="og:title" content="<?php echo $siteDesc;?>" />
+<meta property="og:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo $homeURL;?>" />
 <meta property="og:image" content="<?php echo $siteDir;?>/assets/blue-pin.jpg" />
 <meta property="og:description" content="<?php echo $siteDesc;?>" />
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>">
+<meta name="twitter:description" content="<?php echo get_bloginfo('description');?>">
+<meta name="twitter:image" content="<?php echo $siteDir;?>/assets/imgs/1.jpg">
 -->
 
 </head>
