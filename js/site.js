@@ -1,17 +1,18 @@
 function siteInit() {
-  
-  
-  
-  //GLOBALS
-  app.ts = 250,
-  app.tab = 401,
-  app.dt = 801;
-  app.ww = $(window).width();
-  app.wh = $(window).height();
+  //DECLARE GLOBAL APP HERE
+  var myApp = {
+    siteDir: phpvars_siteDir,
+    ww: $(window).width(),
+    wh: $(window).height(),
+    dt: 801,
+    tab: 401,
+    ts: 250
+  }
+
   orientationClass();
   $(window).resize(function(){
-    windoww = $(window).width();
-    windowh = $(window).height();
+    myApp.ww = $(window).width(),
+    myApp.wh = $(window).height();
     orientationClass();
   });
 
@@ -47,7 +48,7 @@ function siteInit() {
 
 
 function orientationClass() {
-  if (app.ww >= app.wh) {
+  if (myApp.ww >= myApp.wh) {
     $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');
   } else {
     $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
