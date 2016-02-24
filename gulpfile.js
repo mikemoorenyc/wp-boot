@@ -4,34 +4,39 @@ var buildDir = 'build-new';
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     changed = require('gulp-changed');
-var  htmlclean = require('gulp-htmlclean');
-var minifyInline = require('gulp-minify-inline');
+//HTML MINIFIERS
+var htmlclean = require('gulp-htmlclean'),
+    minifyInline = require('gulp-minify-inline');
 //CSS PROCESSING
 var sass = require('gulp-sass'),
-    minifyCSS = require('gulp-minify-css'),
     postcss = require('gulp-postcss'),
     mqpacker = require('css-mqpacker'),
     autoprefixer = require('autoprefixer');
     cssnano = require('cssnano');
-
-gulp.task('sass', function () {
-
-  var processors = [
+//POSTCSS PROCESSORS
+var postcssprocessors = [
     autoprefixer({ browsers: ['last 3 versions'] }),
     mqpacker,
     cssnano({discardComments: {removeAll: true}})
-  ];
+];
+//JS PROCESSING
+var uglify = require('gulp-uglify'),
+    jshint = require('gulp-jshint');
+    
+//IMAGE PROCESSING
+var pngcrush = require('imagemin-pngcrush'),
+    svgstore = require('gulp-svgstore'),
+    imagemin = require('gulp-imagemin');
 
+//SASS CSS TASK
+gulp.task('sass', function () {
   gulp.src(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','sass/editor-styles.scss'])
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(processors))
+    .pipe(postcss(postprocessors))
     .pipe(gulp.dest('../'+buildDir+'/css'));
 });
 
-//JAVASCRIPT PROCESSING
-var uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint');
-
+//JS TASK
 gulp.task('js', function () {
   gulp.src([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'])
     .pipe(uglify())
@@ -44,15 +49,14 @@ gulp.task('js', function () {
     .pipe(gulp.dest('../'+buildDir+'/js'));
 });
 
+//JS LINTING
 gulp.task('lint', function() {
   return gulp.src(['js/site.js', 'modules/*.js', 'js/inline-load.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
-//HTML PROCESSING
-
-
+//HTML TASK
 gulp.task('templatecrush', function() {
   gulp.src(['*.php','*.html','!custom-module-functions.php'])
     .pipe(changed('../'+buildDir))
@@ -61,11 +65,8 @@ gulp.task('templatecrush', function() {
     .pipe(gulp.dest('../'+buildDir));
 });
 
-//IMAGE PROCESSING
-var pngcrush = require('imagemin-pngcrush'),
-    svgstore = require('gulp-svgstore'),
-    imagemin = require('gulp-imagemin');
 
+//SVG SPRITE TASK
 gulp.task('svgstore', function () {
     return gulp
         .src('assets/svgs/*.svg')
@@ -74,6 +75,7 @@ gulp.task('svgstore', function () {
         .pipe(gulp.dest('../'+buildDir+'/assets'));
 });
 
+//IMAGE MINIFYING TASK
 gulp.task('imgmin', function () {
   gulp.src('assets/imgs/**/*')
     .pipe(changed('../'+buildDir+'/assets/imgs'))
