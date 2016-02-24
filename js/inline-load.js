@@ -1,3 +1,4 @@
+//DECLARE THE GLOBAL APP HERE
 var app = {},
 app.siteDir = '***REPLACEWITHTHEMEDIRECTORY***';
 
