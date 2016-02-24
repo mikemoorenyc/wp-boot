@@ -1,17 +1,13 @@
 function siteInit() {
-  if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-      }, false);
-  }
+  
   
   
   //GLOBALS
-  ts = 250,
-  tab = 401,
-  dt = 801;
-  windoww = $(window).width();
-  windowh = $(window).height();
+  app.ts = 250,
+  app.tab = 401,
+  app.dt = 801;
+  app.ww = $(window).width();
+  app.wh = $(window).height();
   orientationClass();
   $(window).resize(function(){
     windoww = $(window).width();
@@ -51,7 +47,7 @@ function siteInit() {
 
 
 function orientationClass() {
-  if (windoww >= windowh) {
+  if (app.ww >= app.wh) {
     $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');
   } else {
     $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
@@ -61,5 +57,5 @@ function orientationClass() {
 
 
 //DON'T TOUCH
-siteScriptsLoaded = true;
+
 siteInit();
