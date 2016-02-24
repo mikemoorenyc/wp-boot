@@ -11,7 +11,7 @@ var htmlclean = require('gulp-htmlclean'),
 var sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
     mqpacker = require('css-mqpacker'),
-    autoprefixer = require('autoprefixer');
+    autoprefixer = require('autoprefixer'),
     cssnano = require('cssnano');
 //POSTCSS PROCESSORS
 var postcssprocessors = [
