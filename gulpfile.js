@@ -5,8 +5,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     changed = require('gulp-changed');
 //HTML MINIFIERS
-var htmlclean = require('gulp-htmlclean'),
-    minifyInline = require('gulp-minify-inline');
+var htmlclean = require('gulp-htmlclean');
 //CSS PROCESSING
 var sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
@@ -32,7 +31,7 @@ var pngcrush = require('imagemin-pngcrush'),
 function sassProcessor(blob, dest) {
   gulp.src(blob)
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(postprocessors))
+    .pipe(postcss(postcssprocessors))
     .pipe(gulp.dest(dest));
 }
 //Generic js Processor
@@ -47,7 +46,6 @@ function jsProcessor(blob, dest, newName) {
 function htmlProcessor(blob, dest) {
   gulp.src(blob)
     .pipe(changed(dest))
-    .pipe(minifyInline())
     .pipe(htmlclean({}))
     .pipe(gulp.dest(dest));
 }
@@ -56,13 +54,13 @@ function htmlProcessor(blob, dest) {
 
 //SASS CSS TASK
 gulp.task('sass', function () {
-  sassProcessor(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','sass/editor-styles.scss'], '../'+buildDir+'/css'));
+  sassProcessor(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','sass/editor-styles.scss'], '../'+buildDir+'/css');
 });
 
 //JS TASK
 gulp.task('js', function () {
   jsProcessor([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], '../'+buildDir+'/js', 'main.js');
-  jsProcessor(('js/inline-load.js', '../'+buildDir+'/js', 'inline-load.js');
+  jsProcessor('js/inline-load.js', '../'+buildDir+'/js', 'inline-load.js');
 });
 
 //JS LINTING

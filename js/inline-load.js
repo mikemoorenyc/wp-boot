@@ -39,5 +39,5 @@ function loadScript(url, callback) {
 // How to use it
 loadScript("//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js", function () {
     console.log('jquery loaded');
-    $.getScript(siteDir+"/js/main.js?v="+timestamp);
+    $.getScript(phpvars_siteDir+"/js/main.js?v="+phpvars_timestamp);
 });

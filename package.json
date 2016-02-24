@@ -20,7 +20,6 @@
     "gulp-htmlclean": "^2.2.3",
     "gulp-imagemin": "^1.2.1",
     "gulp-jshint": "^1.8.6",
-    "gulp-minify-inline": "^0.2.0",
     "gulp-postcss": "^6.0.1",
     "gulp-sass": "^2.0.1",
     "gulp-svgstore": "^5.0.4",
