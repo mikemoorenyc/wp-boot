@@ -21,7 +21,7 @@ function siteInit() {
         this.parent.ww = $(window).width();
         this.parent.wh = $(window).height();
         decider(this.parent.ww,this.parent.wh);
-      });
+      }.bind(this));
     }
   }.orientation();
 
