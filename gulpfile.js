@@ -35,7 +35,9 @@ function clean() {
   // If you are using del 2.0 or above, return its promise
   return del(['../'+buildDir+'/**'], {force:true});
 }
-
+gulp.task('clean', function(){
+  clean();
+});
 
 //Generic sass Processor
 function sassProcessor(blob, dest) {
@@ -127,9 +129,3 @@ gulp.task('watch', function() {
 });
 
 gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore']);
-/*
-gulp.task('build', gulp.series(
-  "clean",
-  gulp.parallel( 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore')
-));
-*/
