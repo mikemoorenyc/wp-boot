@@ -81,7 +81,7 @@ else: ?>
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>">
-<meta name="twitter:description" content="<?php echo get_bloginfo('description');?>">
+<meta name="twitter:description" content="<?php echo $siteDesc;?>">
 <meta name="twitter:image" content="<?php echo $siteDir;?>/assets/imgs/1.jpg">
 -->
 
