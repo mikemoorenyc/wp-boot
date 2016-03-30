@@ -12,14 +12,6 @@ remove_action('wp_head', 'wp_generator');// Removes the WordPress version as a l
 
 add_theme_support('post-thumbnails');
 
-//USE CUSTOM THEME TEMPLATE
-remove_all_actions( 'do_feed_rss2' );
-function create_my_custom_feed() {
-    load_template( get_bloginfo('template_url'). '/rss-template.php');
-}
-add_action('do_feed_rss2', 'create_my_custom_feed', 10, 1);
-
-
 
 add_action( 'admin_init', 'my_theme_add_editor_styles' );
 function my_theme_add_editor_styles() {
