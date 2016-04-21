@@ -25,7 +25,8 @@ function siteInit() {
       }.bind(this));
 
     }
-  }.orientation();
+  };
+  myApp.orientation();
 
 
 
