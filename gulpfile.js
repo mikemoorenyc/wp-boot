@@ -1,4 +1,4 @@
-var buildDir = 'build-new';
+var buildDir = 'wp-boot-build';
 
 //GENERAL MODULES
 var gulp = require('gulp'),
@@ -23,8 +23,7 @@ var uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint');
 
 //IMAGE PROCESSING
-var pngcrush = require('imagemin-pngcrush'),
-    svgstore = require('gulp-svgstore'),
+var svgstore = require('gulp-svgstore'),
     imagemin = require('gulp-imagemin');
 
 var del = require('del'); // rm -rf
@@ -101,7 +100,7 @@ gulp.task('svgstore', function () {
 gulp.task('imgmin', function () {
   return gulp.src('assets/imgs/**/*')
     .pipe(changed('../'+buildDir+'/assets/imgs'))
-    .pipe(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: [pngcrush()]}))
+    .pipe(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: []}))
     .pipe(gulp.dest('../'+buildDir+'/assets/imgs'));
 });
 
