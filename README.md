@@ -1,3 +1,6 @@
+REMOVE IMAGEMIN (MAKE SURE SVG ARE COMPRESSED OTHER WAY)
+CONVERT TO CLEAN CSS
+
 quick startup for WP development on a local LAMP server
 
 put in the themes folder.
