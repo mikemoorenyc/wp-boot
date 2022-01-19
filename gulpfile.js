@@ -1,130 +1,91 @@
-var buildDir = 'wp-boot-build';
+let isProduction = process.env.NODE_ENV === "production"
 
-//GENERAL MODULES
-var gulp = require('gulp'),
-    concat = require('gulp-concat'),
-    changed = require('gulp-changed');
-//HTML MINIFIERS
-var htmlclean = require('gulp-htmlclean');
-//CSS PROCESSING
-var sass = require('gulp-sass'),
-    postcss = require('gulp-postcss'),
-    mqpacker = require('css-mqpacker'),
-    autoprefixer = require('autoprefixer'),
-    cssnano = require('cssnano');
-//POSTCSS PROCESSORS
-var postcssprocessors = [
-    autoprefixer({ browsers: ['last 3 versions'] }),
-    mqpacker,
-    cssnano({discardComments: {removeAll: true}})
-];
-//JS PROCESSING
-var uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint');
+let config = require(isProduction ? "./build-config.json": "./dev-config.json");
+config.buildDate =  Math.floor(new Date() / 1000);
 
-//IMAGE PROCESSING
-var svgstore = require('gulp-svgstore'),
-    imagemin = require('gulp-imagemin');
+const gulp = require("gulp"),
+      del = require("del"),
+      jr = require("gulp-json-replace"),
+      gulpif = require("gulp-if"),
+      strip = require("gulp-strip-code"),
+      replace = require("gulp-replace"),
+      htmlmin = require("gulp-htmlmin"),
+      babel = require('gulp-babel'),
+      plumber = require("gulp-plumber"),
+      uglify = require("gulp-uglify"),
+      sass = require('gulp-sass')(require('sass')),
+      postcss = require("gulp-postcss"),
+      cssnano = require("cssnano"),
+      autoprefixer = require("autoprefixer")
 
-var del = require('del'); // rm -rf
-//
-
-function clean() {
-  // You can use multiple globbing patterns as you would with `gulp.src`
-  // If you are using del 2.0 or above, return its promise
-  return del(['../'+buildDir+'/**'], {force:true});
+const {
+  replaceConfig,
+  buildDir
+} = config; 
+const jrConfig = {
+  src: replaceConfig,
+  identify: '%%'
 }
-gulp.task('clean', function(){
-  clean();
+//CLEAN FUNCTION
+gulp.task("cleaner", () => {
+    return del([buildDir], {force:true});
 });
+// MOVE HTML
+gulp.task("templates",()=> {
+  let cacheDate = Math.floor(new Date() / 1000);
+  return gulp.src(["*.html","*.php"])
+    .pipe( replace('$cacheBreaker = time();','$cacheBreaker = '+cacheDate+';'))
+    .pipe(jr(jrConfig))
+    .pipe( gulpif( isProduction, strip( {start_comment: "REMOVE IN DEV", end_comment: "END REMOVE IN DEV"} ) ) ) 
+    .pipe( gulpif( !isProduction, strip( {start_comment: "REMOVE FROM PRODUCTION", end_comment: "END REMOVE FROM PRODUCTION"} ) ) )
+    .pipe( gulpif( isProduction, htmlmin( {
+      collapseWhitespace: true,
+      ignoreCustomFragments:[ /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]
+    } ) ) )
+    .pipe(gulp.dest(buildDir));
+})
+//WPMOVE
+const wpItems = ["style.css","screenshot.png"]
+gulp.task("wpMove", gulp.parallel( () => {
+  return gulp.src(wpItems)
+    .pipe(jr(jrConfig))
+    .pipe(gulp.dest(buildDir));
 
-//Generic sass Processor
-function sassProcessor(blob, dest) {
-   gulp.src(blob)
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(postcssprocessors))
-    .pipe(gulp.dest(dest));
-}
-//Generic js Processor
-function jsProcessor(blob, dest, newName) {
-  return gulp.src(blob)
-    .pipe(uglify())
-    .on('error', console.error.bind(console))
-    .pipe(concat(newName))
-    .pipe(gulp.dest(dest));
-}
-//Generic html Processor
-function htmlProcessor(blob, dest) {
-  return gulp.src(blob)
-    .pipe(changed(dest))
-    .pipe(htmlclean({}))
-    .pipe(gulp.dest(dest));
-}
+} ))
+//JSBUILD
 
+gulp.task("js", () => {
+  return gulp.src(["js/site.js"])
+    .pipe(plumber())
+    .pipe(babel({
+			presets: ['@babel/preset-env']
+		}))
+    .pipe(gulpif(isProduction, uglify()))
+    .pipe(gulp.dest(buildDir+'/js'));
 
-
-//SASS CSS TASK
-gulp.task('sass', function () {
-  sassProcessor(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','sass/editor-styles.scss'], '../'+buildDir+'/css');
-});
-
-//JS TASK
-gulp.task('js', function () {
-  jsProcessor([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], '../'+buildDir+'/js', 'main.js');
-  jsProcessor('js/inline-load.js', '../'+buildDir+'/js', 'inline-load.js');
-});
-
-//JS LINTING
-gulp.task('lint', function() {
-  return gulp.src(['js/site.js', 'modules/*.js', 'js/inline-load.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
-
-//HTML TASK
-gulp.task('templatecrush', function() {
-  htmlProcessor(['*.php','*.html','!custom-module-functions.php'], '../'+buildDir);
-});
-
-
-//SVG SPRITE TASK
-gulp.task('svgstore', function () {
-    return gulp
-        .src('assets/svgs/*.svg')
-        .pipe(imagemin())
-        .pipe(svgstore({ inlineSvg: true }))
-        .pipe(gulp.dest('../'+buildDir+'/assets'));
-});
-
-//IMAGE MINIFYING TASK
-gulp.task('imgmin', function () {
-  return gulp.src('assets/imgs/**/*')
-    .pipe(changed('../'+buildDir+'/assets/imgs'))
-    .pipe(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: []}))
-    .pipe(gulp.dest('../'+buildDir+'/assets/imgs'));
-});
-
-//DUMPS
-function dumper(src, dest) {
-  return gulp.src(src)
-    .pipe(gulp.dest(dest));
-}
-gulp.task('fontdump', function(){
-  dumper('assets/fonts/**/*', '../'+buildDir+'/assets/fonts');
-});
-
-gulp.task('wpdump', function(){
-  dumper(['style.css', 'screenshot.png'], '../'+buildDir);
-});
+})
+//CSS 
+gulp.task("css", () => {
+  const plugins = [
+    autoprefixer({grid:true}),
+    ((isProduction)? cssnano() : null )
+  ]
+  return gulp.src(["scss/main.scss"])
+    .pipe(gulpif(isProduction, strip({start_comment: "/* REMOVE IN PRODUCTION*/", end_comment: "/* END REMOVE IN PRODUCTION*/"})))
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(postcss(plugins))
+    .pipe(gulp.dest(buildDir+"/css"))
+})
+//WATCH 
 
 gulp.task('watch', function() {
-    gulp.watch('js/**/*.js', ['js']);
-    gulp.watch(['sass/**/*'], ['sass']);
-    gulp.watch('assets/imgs/**/*', ['imgmin']);
-    gulp.watch('assets/fonts/**/*', ['fontdump']);
-    gulp.watch(['*.php', '*.html'], ['templatecrush']);
-    gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
-    gulp.watch(['assets/svgs/*.svg'], ['svgstore']);
+  gulp.watch(['js/**/*.js'], gulp.series('js'));
+  gulp.watch(['scss/**/*'], gulp.series('css'));
+  gulp.watch(wpItems, gulp.series('wpMove'));
+  gulp.watch(['*.php', '*.html'], gulp.series('templates'));
 });
 
-gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore']);
+//BUILD
+
+gulp.task("build", gulp.series( "cleaner", gulp.parallel( ["templates","wpMove","js","css"] )  )   )

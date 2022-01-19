@@ -1,11 +1,8 @@
 /*
 
-	Theme Name: MIKE'S WORDPRESS STARTUP WITH GULP
+	Theme Name: %%themeName
 	Author: Mike Moore
-	Website: http://realestatearts.com
-	Twitter: @realestatearts
-	Version: 1.2
-	Description: Mike's WORDPRESS BLANK FOR DEVELOPING SITES
+
 
 	CONTENTS
 	-------------
@@ -22,3 +19,6 @@
 .sticky {}          /* DO NOT EDIT THIS */
 .gallery-caption {} /* THESE ARE USELESS */
 .bypostauthor {}    /* THEY ARE ONLY TO KEEP THEME CHECK HAPPY */
+.move {
+	position:relative; 
+}
