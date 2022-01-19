@@ -1,1 +1,1 @@
-# Studio 410 Wordpress theme
+# WP Starter theme
