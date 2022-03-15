@@ -31,6 +31,7 @@
     "gulp-strip-code": "^0.1.4",
     "gulp-uglify": "^3.0.2",
     "install": "^0.13.0",
-    "sass": "^1.49.0"
+    "sass": "^1.49.0",
+    "shelljs": ">=0.8.5"
   }
 }
